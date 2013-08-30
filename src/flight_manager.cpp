@@ -12,11 +12,12 @@ bool FlightManager::addFlight(Flight newFlight){
     return deque.pushFront(newFlight);
 
   Node *node = deque.getHead();
+  Flight flight;
   bool lowerFuel;
 
   while (node != NULL){
-    Flight flight = node->flight;
     lowerFuel = flight.fuel_quantity > newFlight.fuel_quantity;
+    flight = node->flight;
 
     if (lowerFuel)
       return deque.insertBefore(node, newFlight);
