@@ -94,7 +94,8 @@ Flight Deque::popFront(){
   Node *node = this->head;
   Flight flight = node->flight;
 
-  node->next->previous = NULL;
+  if (node->next != NULL)
+    node->next->previous = NULL;
 
   this->head = node->next;
 
@@ -107,7 +108,8 @@ Flight Deque::popBack(){
   Node *node = this->tail;
   Flight flight = node->flight;
 
-  node->previous->next = NULL;
+  if (node->previous != NULL)
+    node->previous->next = NULL;
 
   this->tail = node->previous;
 
@@ -116,7 +118,7 @@ Flight Deque::popBack(){
   return flight;
 }
 
-Flight Deque::remove(Node *node){
+Flight Deque::remove(Node *&node){
   if (node == this->head)
     return this->popFront();
 
