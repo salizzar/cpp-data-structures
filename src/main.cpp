@@ -20,6 +20,42 @@ void addFlight(FlightManager &manager){
   cout << "\nSuccessfully added flight.\n";
 }
 
+void deleteFirstFlight(FlightManager &manager){
+  char option;
+
+  cout << "\nAre you sure? (y/n) ";
+  cin >> option;
+
+  if (tolower(option) != 'y'){
+    cout << "\nNothing to do.";
+    return;
+  }
+
+  if (!manager.deleteFirstFlight()){
+    cout << "\nCannot remove first flight! :(";
+  } else {
+    cout << "\nSuccessfully removed first flight.";
+  }
+}
+
+void deleteLastFlight(FlightManager &manager){
+  char option;
+
+  cout << "\nAre you sure? (y/n) ";
+  cin >> option;
+
+  if (tolower(option) != 'y'){
+    cout << "\nNothing to do.";
+    return;
+  }
+
+  if (!manager.deleteLastFlight()){
+    cout << "\nCannot remove last flight! :(";
+  } else {
+    cout << "\nSuccessfully removed last flight.";
+  }
+}
+
 void deleteFlight(FlightManager &manager){
   int flight_id;
 
@@ -35,18 +71,25 @@ void showFlights(FlightManager &manager){
   manager.showFlights();
 }
 
+void showMenu(){
+  cout << "\n------------------------";
+  cout << "\n1 - Add flight";
+  cout << "\n2 - Show flights";
+  cout << "\n3 - Delete flight";
+  cout << "\n4 - Delete first flight";
+  cout << "\n5 - Delete last flight";
+  cout << "\n9 - Exit";
+  cout << "\n-----------------------";
+  cout << "\n";
+  cout << "\nEnter a option:  ";
+}
+
 int main(){
   FlightManager manager;
   int option;
 
   do {
-    cout << "\n-----------------\n";
-    cout << "\n1 - Add flight";
-    cout << "\n2 - Delete flight";
-    cout << "\n3 - Show flights";
-    cout << "\n9 - Exit";
-    cout << "\n-----------------\n";
-    cout << "\nEnter a option:  ";
+    showMenu();
 
     cin >> option; cout << "\n";
 
@@ -56,17 +99,30 @@ int main(){
         break;
 
       case 2:
-        deleteFlight(manager);
+        showFlights(manager);
         break;
 
       case 3:
-        showFlights(manager);
+        deleteFlight(manager);
+        break;
+
+      case 4:
+        deleteFirstFlight(manager);
+        break;
+
+      case 5:
+        deleteLastFlight(manager);
         break;
 
       case 9:
         break;
 
       default:
+        char dummy[255];
+
+        cin.clear();
+        cin >> dummy;
+
         cout << "\nInvalid option, try again.\n";
     }
   } while (option != 9);

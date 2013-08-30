@@ -12,7 +12,11 @@ private:
 
 public:
   bool addFlight(Flight);
+
   bool deleteFlight(int);
+  bool deleteFirstFlight();
+  bool deleteLastFlight();
+
   void showFlights();
 };
 

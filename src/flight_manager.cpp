@@ -50,6 +50,16 @@ bool FlightManager::deleteFlight(int flight_id){
   return true;
 }
 
+bool FlightManager::deleteFirstFlight(){
+  deque.popFront();
+  return true;
+}
+
+bool FlightManager::deleteLastFlight(){
+  deque.popBack();
+  return true;
+}
+
 void FlightManager::showFlights(){
   if (deque.isEmpty()){
     cout << "\n No flights to show.\n";
