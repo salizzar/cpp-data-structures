@@ -8,22 +8,18 @@ bool FlightManager::addFlight(Flight newFlight){
   if (deque.isEmpty())
     return deque.pushFront(newFlight);
 
+  if (newFlight.national_authority)
+    return deque.pushFront(newFlight);
+
   Node *node = deque.getHead();
+  bool lowerFuel;
 
   while (node != NULL){
     Flight flight = node->flight;
+    lowerFuel = flight.fuel_quantity > newFlight.fuel_quantity;
 
-    bool lowerFuel = flight.fuel_quantity > newFlight.fuel_quantity;
-    if (lowerFuel){
-      deque.insertBefore(node, newFlight);
-      return true;
-    }
-
-    bool isAuthority = newFlight.national_authority && !flight.national_authority;
-    if (isAuthority){
-      deque.insertBefore(node, newFlight);
-      return true;
-    }
+    if (lowerFuel)
+      return deque.insertBefore(node, newFlight);
 
     node = node->next;
   }
