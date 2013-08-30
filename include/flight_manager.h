@@ -11,6 +11,7 @@ private:
   Deque deque;
 
 public:
+  bool noFlights();
   bool addFlight(Flight);
 
   bool deleteFlight(int);
