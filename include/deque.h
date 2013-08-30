@@ -31,7 +31,7 @@ public:
 
   Flight popFront();
   Flight popBack();
-  Flight remove(Node*);
+  Flight remove(Node*&);
 
   void show();
   void showReverse();
