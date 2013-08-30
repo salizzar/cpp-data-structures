@@ -1,19 +1,22 @@
 #include <iostream>
 #include "flight_manager.h"
 
+using namespace std;
+
 void addFlight(FlightManager &manager){
   int    flight_id;
   char   flight_authority[1];
   double flight_fuel;
+  Flight flight;
 
   cout << "Flight id:                               "; cin >> flight_id;
-  cout << "Flight is from national authority? (y/n) "; cin >> flight_authority;
-  cout << "Flight fuel quantity:                    "; cin >> flight_fuel;
-
-  Flight flight;
   flight.id = flight_id;
-  flight.national_authority = tolower(flight_authority[0]) == 'y';
+
+  cout << "Flight fuel quantity:                    "; cin >> flight_fuel;
   flight.fuel_quantity = flight_fuel;
+
+  cout << "Flight is from national authority? (y/n) "; cin >> flight_authority;
+  flight.national_authority = tolower(flight_authority[0]) == 'y';
 
   manager.addFlight(flight);
 
@@ -21,6 +24,11 @@ void addFlight(FlightManager &manager){
 }
 
 void deleteFirstFlight(FlightManager &manager){
+  if (manager.noFlights()){
+    cout << "\nNo flights available.\n";
+    return;
+  }
+
   char option;
 
   cout << "\nAre you sure? (y/n) ";
@@ -39,6 +47,11 @@ void deleteFirstFlight(FlightManager &manager){
 }
 
 void deleteLastFlight(FlightManager &manager){
+  if (manager.noFlights()){
+    cout << "\nNo flights available.\n";
+    return;
+  }
+
   char option;
 
   cout << "\nAre you sure? (y/n) ";
@@ -57,14 +70,19 @@ void deleteLastFlight(FlightManager &manager){
 }
 
 void deleteFlight(FlightManager &manager){
+  if (manager.noFlights()){
+    cout << "\nNo flights available.\n";
+    return;
+  }
+
   int flight_id;
 
   cout << "\nEnter flight id: "; cin >> flight_id;
 
   if (manager.deleteFlight(flight_id))
-    cout << "\nSuccessfully deleted flight.";
+    cout << "Successfully deleted flight.";
   else
-    cout << "\nFlight not found.";
+    cout << "Flight not found.\n";
 }
 
 void showFlights(FlightManager &manager){
@@ -118,10 +136,11 @@ int main(){
         break;
 
       default:
-        char dummy[255];
-
-        cin.clear();
-        cin >> dummy;
+        if (cin.fail()){
+          char dummy[255];
+          cin.clear();
+          cin >> dummy;
+        }
 
         cout << "\nInvalid option, try again.\n";
     }
