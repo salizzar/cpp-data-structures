@@ -4,9 +4,7 @@
 
 #pragma once
 
-using namespace std;
-
-class FlightManager {
+class FlightDequeManager {
 private:
   Deque deque;
 

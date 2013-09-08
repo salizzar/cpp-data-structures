@@ -1,10 +1,12 @@
-#include "flight_manager.h"
+#include "flight_deque_manager.h"
 
-bool FlightManager::noFlights(){
+using namespace std;
+
+bool FlightDequeManager::noFlights(){
   return deque.isEmpty();
 }
 
-bool FlightManager::addFlight(Flight newFlight){
+bool FlightDequeManager::addFlight(Flight newFlight){
   if (deque.isEmpty())
     return deque.pushFront(newFlight);
 
@@ -30,12 +32,12 @@ bool FlightManager::addFlight(Flight newFlight){
   return true;
 }
 
-bool FlightManager::deleteFlight(int flight_id){
+bool FlightDequeManager::deleteFlight(int flightId){
   Node *node = deque.getHead();
   Node *target = NULL;
 
   while (target == NULL && node != NULL){
-    if (node->flight.id == flight_id){
+    if (node->flight.id == flightId){
       target = node;
       break;
     }
@@ -51,17 +53,17 @@ bool FlightManager::deleteFlight(int flight_id){
   return true;
 }
 
-bool FlightManager::deleteFirstFlight(){
+bool FlightDequeManager::deleteFirstFlight(){
   deque.popFront();
   return true;
 }
 
-bool FlightManager::deleteLastFlight(){
+bool FlightDequeManager::deleteLastFlight(){
   deque.popBack();
   return true;
 }
 
-void FlightManager::showFlights(){
+void FlightDequeManager::showFlights(){
   if (deque.isEmpty()){
     cout << "\n No flights to show.\n";
     return;
