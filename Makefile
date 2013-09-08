@@ -4,7 +4,11 @@ clean:
 	rm -rf bin; mkdir bin;
 
 build: clean
-	g++ -I include -g src/** -o bin/$(NAME)
+	g++ -I include src/** -o bin/$(NAME)
+
+debug: clean
+	g++ -I include -g src/** -o bin/$(NAME)-test
+	bin/$(NAME)-test
 
 all: build
 
