@@ -5,8 +5,6 @@
 
 #pragma once
 
-using namespace std;
-
 //TODO: use templates
 class Deque {
 private:

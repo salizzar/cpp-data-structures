@@ -1,5 +1,7 @@
 #include "deque.h"
 
+using namespace std;
+
 Deque::Deque(){
   this->head = this->tail = NULL;
 }
