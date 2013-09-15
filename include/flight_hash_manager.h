@@ -1,5 +1,7 @@
 #include <iostream>
 #include <iomanip>
+#include <stdlib.h>
+#include <time.h>
 #include "hash.h"
 
 #pragma once
@@ -9,10 +11,9 @@ private:
   Hash hash;
 
 public:
-  FlightHashManager();
-
   bool addFlight(Flight);
   void showFlight(int);
   bool deleteFlight(int);
+  void heavyCharge(int);
 };
 

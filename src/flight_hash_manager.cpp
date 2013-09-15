@@ -2,9 +2,6 @@
 
 using namespace std;
 
-FlightHashManager::FlightHashManager(){
-}
-
 bool FlightHashManager::addFlight(Flight newFlight){
   return this->hash.add(newFlight);
 };
@@ -34,8 +31,27 @@ bool FlightHashManager::deleteFlight(int flightId){
     return false;
   }
 
-  hash.remove(node);
+  this->hash.remove(node);
 
   return true;
+}
+
+void FlightHashManager::heavyCharge(int items){
+  int id;
+
+  srand(time(NULL));
+
+  for (int i = 0; i < items; i++){
+    id = rand() % items + 1;
+
+    Flight flight;
+    flight.id = id;
+    flight.fuel_quantity = i + 10.5;
+    flight.national_authority = false;
+
+    cout << "\nAdding flight " << flight.id;
+
+    this->hash.add(flight);
+  }
 }
 
