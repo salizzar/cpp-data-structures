@@ -3,13 +3,20 @@
 
 #pragma once
 
-const int HASH_ARRAY_SIZE = 100;
+const int HASH_ARRAY_SIZE = 11;
+const int HASH_LIST_LIMIT = 3;
 
 class Hash {
 private:
-  Deque *table[HASH_ARRAY_SIZE];
+  int   currentSize;
+  Deque **table;
 
-  int createHash(int);
+  int   createHash(int);
+  int   getNextPrime(int);
+  bool  isPrime(int);
+  bool  tableIsFull(int);
+  void  rearrange();
+  void  moveEntries(Deque*, int);
 
 public:
   Hash();
