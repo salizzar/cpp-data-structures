@@ -9,6 +9,7 @@ private:
   void addFlight();
   void showFlight();
   void deleteFlight();
+  void heavyCharge();
   void showMenu();
 
 public:

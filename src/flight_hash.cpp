@@ -42,11 +42,17 @@ void FlightHash::deleteFlight(){
     cout << "Flight not found.\n";
 }
 
+void FlightHash::heavyCharge(){
+  int items = 100;
+  manager.heavyCharge(items);
+}
+
 void FlightHash::showMenu(){
   cout << "\n------------------------";
   cout << "\n1 - Add flight";
   cout << "\n2 - Show flight";
   cout << "\n3 - Delete flight";
+  cout << "\n4 - Heavy Charge";
   cout << "\n9 - Exit";
   cout << "\n";
   cout << "\nEnter a option:  ";
@@ -71,6 +77,10 @@ void FlightHash::run(){
 
       case 3:
         this->deleteFlight();
+        break;
+
+      case 4:
+        this->heavyCharge();
         break;
 
       case 9:
