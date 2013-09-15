@@ -50,11 +50,7 @@ bool Hash::exists(int flightId){
 
 Flight Hash::remove(Node *node){
   int hash = this->createHash(node->flight.id);
-
   Flight flight = this->table[hash]->remove(node);
-
-  if (this->table[hash]->isEmpty())
-    delete(this->table[hash]);
 
   return flight;
 }
