@@ -8,7 +8,7 @@ build: clean
 
 debug: clean
 	g++ -I include -g src/** -o bin/$(NAME)-test
-	bin/$(NAME)-test
+	gdb bin/$(NAME)-test
 
 all: build
 
