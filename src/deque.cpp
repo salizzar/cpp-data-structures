@@ -11,7 +11,6 @@ Deque::~Deque(){
 
   while (current != NULL){
     Node *node = current;
-
     current = current->next;
 
     delete(node);
@@ -21,6 +20,18 @@ Deque::~Deque(){
 Node *Deque::getHead(){ return this->head; }
 Node *Deque::getTail(){ return this->tail; }
 bool Deque::isEmpty() { return (!this->head || !this->tail); }
+
+int Deque::getSize() {
+  int size = 0;
+  Node *walker = this->head;
+
+  while (walker != NULL){
+    size++;
+    walker = walker->next;
+  }
+
+  return size;
+}
 
 bool Deque::pushFront(Flight flight){
   if (this->isEmpty())

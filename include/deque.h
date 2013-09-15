@@ -16,16 +16,17 @@ public:
   Deque();
   ~Deque();
 
-  Node *getHead();
-  Node *getTail();
+  Node  *getHead();
+  Node  *getTail();
 
-  bool isEmpty();
+  bool  isEmpty();
+  int   getSize();
 
-  bool pushFront(Flight);
-  bool pushBack(Flight);
+  bool  pushFront(Flight);
+  bool  pushBack(Flight);
 
-  bool insertBefore(Node*, Flight);
-  bool insertAfter(Node*, Flight);
+  bool  insertBefore(Node*, Flight);
+  bool  insertAfter(Node*, Flight);
 
   Flight popFront();
   Flight popBack();
