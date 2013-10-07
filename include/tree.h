@@ -9,6 +9,9 @@ private:
 
   void  walkInsert(Node*);
   void  recursiveDestroy(Node*);
+  void  recursivePrefix(Node*);
+  void  recursiveInfix(Node*);
+  void  recursivePostfix(Node*);
 
 public:
   Tree();

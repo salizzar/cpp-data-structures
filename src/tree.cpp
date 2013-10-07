@@ -1,5 +1,7 @@
 #include "tree.h"
 
+using namespace std;
+
 Tree::Tree(){
   this->root = NULL;
 }
@@ -26,10 +28,10 @@ void Tree::walkInsert(Node *node){
   Node *father, *current;
   int currentId;
 
-  father = this->root;
+  current = this->root;
 
   while (true){
-    current = father;
+    father = current;
     currentId = current->flight.id;
 
     if (node->flight.id < currentId){
@@ -86,12 +88,15 @@ int Tree::getSize(){
 }
 
 void Tree::prefix(){
+  this->recursivePrefix(this->root);
 }
 
 void Tree::infix(){
+  this->recursiveInfix(this->root);
 }
 
 void Tree::postfix(){
+  this->recursivePostfix(this->root);
 }
 
 void Tree::clear(){
@@ -106,5 +111,32 @@ void Tree::recursiveDestroy(Node *node){
   this->recursiveDestroy(node->right);
 
   delete(node);
+}
+
+void Tree::recursivePrefix(Node *node){
+  if (node == NULL)
+    return;
+
+  cout << "\n" << node->flight.id;
+  this->recursivePrefix(node->left);
+  this->recursivePrefix(node->right);
+}
+
+void Tree::recursiveInfix(Node *node){
+  if (node == NULL)
+    return;
+
+  this->recursiveInfix(node->left);
+  cout << "\n" << node->flight.id;
+  this->recursiveInfix(node->right);
+}
+
+void Tree::recursivePostfix(Node *node){
+  if (node == NULL)
+    return;
+
+  this->recursivePostfix(node->left);
+  this->recursivePostfix(node->right);
+  cout << "\n" << node->flight.id;
 }
 
