@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "deque.h"
 
 #pragma once
@@ -8,7 +9,7 @@ const int HASH_LIST_LIMIT = 3;
 
 class Hash {
 private:
-  int   currentSize;
+  int   size;
   Deque **table;
 
   int   createHash(int);
@@ -16,7 +17,7 @@ private:
   bool  isPrime(int);
   bool  tableIsFull(int);
   void  rearrange();
-  void  moveEntries(Deque*, int);
+  void  moveEntries(int);
 
 public:
   Hash();
@@ -26,5 +27,8 @@ public:
   bool    add(Flight);
   bool    exists(int);
   Flight  remove(Node*);
+  int     getSize();
+  void    show();
+  void    clear();
 };
 
