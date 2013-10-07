@@ -10,6 +10,8 @@ private:
   void showFlight();
   void deleteFlight();
   void heavyCharge();
+  void showAllFlights();
+  void deleteAllFlights();
   void showMenu();
 
 public:

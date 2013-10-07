@@ -43,8 +43,21 @@ void FlightHash::deleteFlight(){
 }
 
 void FlightHash::heavyCharge(){
-  int items = 100;
-  manager.heavyCharge(items);
+  int items = 1000;
+  int range = 100000000;
+  manager.heavyCharge(items, range);
+}
+
+void FlightHash::showAllFlights(){
+  manager.showAllFlights();
+
+  cout << "\nDone.\n";
+}
+
+void FlightHash::deleteAllFlights(){
+  manager.deleteAllFlights();
+
+  cout << "\nSuccessfully deleted all flights.\n";
 }
 
 void FlightHash::showMenu(){
@@ -53,6 +66,8 @@ void FlightHash::showMenu(){
   cout << "\n2 - Show flight";
   cout << "\n3 - Delete flight";
   cout << "\n4 - Heavy Charge";
+  cout << "\n5 - Show all flights";
+  cout << "\n6 - Delete all flights";
   cout << "\n9 - Exit";
   cout << "\n";
   cout << "\nEnter a option:  ";
@@ -81,6 +96,14 @@ void FlightHash::run(){
 
       case 4:
         this->heavyCharge();
+        break;
+
+      case 5:
+        this->showAllFlights();
+        break;
+
+      case 6:
+        this->deleteAllFlights();
         break;
 
       case 9:
