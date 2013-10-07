@@ -2,36 +2,28 @@
 
 using namespace std;
 
-bool FlightHashManager::addFlight(Flight newFlight){
-  return this->hash.add(newFlight);
+bool FlightHashManager::addFlight(Flight flight){
+  return this->hash.add(flight);
 };
 
 void FlightHashManager::showFlight(int flightId){
-  Node *node = this->hash.get(flightId);
-  if (node == NULL){
+  Entry *entry = this->hash.get(flightId);
+  if (entry == NULL){
     cout << "\nNo flight to show.\n";
     return;
   }
 
-  Flight flight = node->flight;
-
-  cout << "\n";
-  cout << "| flight id | fuel quantity | national authority |";
-  cout << "\n";
-
-  cout << "|" << std::setw(10) << flight.id << " ";
-  cout << "|" << std::setw(14) << flight.fuel_quantity << " ";
-  cout << "|" << std::setw(19) << flight.national_authority << " ";
-  cout << "|\n";
+  FlightFacade::showHeaders();
+  FlightFacade::show(entry->flight);
 };
 
 bool FlightHashManager::deleteFlight(int flightId){
-  Node *node = this->hash.get(flightId);
-  if (node == NULL){
+  Entry *entry = this->hash.get(flightId);
+  if (entry == NULL){
     return false;
   }
 
-  this->hash.remove(node);
+  this->hash.remove(entry);
 
   return true;
 }

@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <stdlib.h>
 #include <time.h>
+#include "flight_facade.h"
 #include "hash.h"
 
 #pragma once
