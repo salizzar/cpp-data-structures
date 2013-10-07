@@ -1,14 +1,16 @@
 NAME := cpp-data-structures
+CC := g++
+DBG := gdb
 
 clean:
 	rm -rf bin; mkdir bin;
 
 build: clean
-	g++ -I include src/** -o bin/$(NAME)
+	$(CC) -I include src/** -o bin/$(NAME)
 
 debug: clean
-	g++ -I include -g src/** -o bin/$(NAME)-test
-	gdb bin/$(NAME)-test
+	$(CC) -I include -g src/** -o bin/$(NAME)-test
+	$(DBG) bin/$(NAME)-test
 
 all: build
 
