@@ -1,6 +1,9 @@
 #include <iostream>
 #include "flight_deque_manager.h"
+#include "flight_facade.h"
 #include "util.h"
+
+#pragma once
 
 class FlightDeque {
 private:
@@ -14,8 +17,6 @@ private:
   void showMenu();
 
 public:
-  FlightDeque();
-
   void run();
 };
 

@@ -2,23 +2,8 @@
 
 using namespace std;
 
-FlightDeque::FlightDeque(){
-}
-
 void FlightDeque::addFlight(){
-  int     flightId;
-  char    flightAuthority[1];
-  double  flightFuel;
-  Flight  flight;
-
-  cout << "Flight id:                               "; cin >> flightId;
-  flight.id = flightId;
-
-  cout << "Flight fuel quantity:                    "; cin >> flightFuel;
-  flight.fuel_quantity = flightFuel;
-
-  cout << "Flight is from national authority? (y/n) "; cin >> flightAuthority;
-  flight.national_authority = tolower(flightAuthority[0]) == 'y';
+  Flight flight = FlightFacade::create();
 
   this->manager.addFlight(flight);
 
@@ -87,6 +72,11 @@ void FlightDeque::deleteFlight(){
 }
 
 void FlightDeque::showFlights(){
+  if (this->manager.noFlights()){
+    cout << "\nNo flights to show.\n";
+    return;
+  }
+
   this->manager.showFlights();
 }
 
