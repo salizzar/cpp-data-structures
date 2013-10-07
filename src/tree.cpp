@@ -84,7 +84,11 @@ Flight Tree::remove(Node *node){
 }
 
 int Tree::getSize(){
-  return 0;
+  int total = 0;
+
+  this->recursiveCount(this->root, total);
+
+  return total;
 }
 
 void Tree::prefix(){
@@ -138,5 +142,15 @@ void Tree::recursivePostfix(Node *node){
   this->recursivePostfix(node->left);
   this->recursivePostfix(node->right);
   cout << "\n" << node->flight.id;
+}
+
+void Tree::recursiveCount(Node *node, int &count){
+  if (node == NULL)
+    return;
+
+  count += 1;
+
+  this->recursiveCount(node->left, count);
+  this->recursiveCount(node->right, count);
 }
 

@@ -12,6 +12,7 @@ private:
   void  recursivePrefix(Node*);
   void  recursiveInfix(Node*);
   void  recursivePostfix(Node*);
+  void  recursiveCount(Node*, int&);
 
 public:
   Tree();
