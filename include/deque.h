@@ -1,14 +1,14 @@
 #include <iostream>
 #include <stdlib.h>
 #include "flight.h"
-#include "node.h"
+#include "entry.h"
 
 #pragma once
 
 //TODO: use templates
 class Deque {
 private:
-  Node *head, *tail;
+  Entry *head, *tail;
 
   bool insertFirstElement(Flight);
 
@@ -16,24 +16,24 @@ public:
   Deque();
   ~Deque();
 
-  Node  *getHead();
-  Node  *getTail();
+  Entry   *getHead();
+  Entry   *getTail();
 
-  bool  isEmpty();
-  int   getSize();
+  bool    isEmpty();
+  int     getSize();
 
-  bool  pushFront(Flight);
-  bool  pushBack(Flight);
+  bool    pushFront(Flight);
+  bool    pushBack(Flight);
 
-  bool  insertBefore(Node*, Flight);
-  bool  insertAfter(Node*, Flight);
+  bool    insertBefore(Entry*, Flight);
+  bool    insertAfter(Entry*, Flight);
 
-  Flight popFront();
-  Flight popBack();
-  Flight remove(Node*&);
+  Flight  popFront();
+  Flight  popBack();
+  Flight  remove(Entry*&);
 
-  void show();
-  void showReverse();
-  void clear();
+  void    show();
+  void    showReverse();
+  void    clear();
 };
 

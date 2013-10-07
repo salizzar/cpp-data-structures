@@ -10,13 +10,13 @@ Deque::~Deque(){
   this->clear();
 }
 
-Node *Deque::getHead(){ return this->head; }
-Node *Deque::getTail(){ return this->tail; }
+Entry *Deque::getHead(){ return this->head; }
+Entry *Deque::getTail(){ return this->tail; }
 bool Deque::isEmpty() { return (!this->head || !this->tail); }
 
 int Deque::getSize() {
   int size = 0;
-  Node *walker = this->head;
+  Entry *walker = this->head;
 
   while (walker != NULL){
     size++;
@@ -30,14 +30,14 @@ bool Deque::pushFront(Flight flight){
   if (this->isEmpty())
     return this->insertFirstElement(flight);
 
-  Node *node = new Node();
-  node->flight = flight;
+  Entry *entry = new Entry();
+  entry->flight = flight;
 
-  node->previous = NULL;
-  node->next = this->head;
+  entry->previous = NULL;
+  entry->next = this->head;
 
-  this->head->previous = node;
-  this->head = node;
+  this->head->previous = entry;
+  this->head = entry;
 
   return true;
 }
@@ -46,131 +46,131 @@ bool Deque::pushBack(Flight flight){
   if (this->isEmpty())
     return this->insertFirstElement(flight);
 
-  Node *node = new Node();
-  node->flight = flight;
+  Entry *entry = new Entry();
+  entry->flight = flight;
 
-  node->previous = this->tail;
-  node->next = NULL;
+  entry->previous = this->tail;
+  entry->next = NULL;
 
-  this->tail->next = node;
-  this->tail = node;
+  this->tail->next = entry;
+  this->tail = entry;
 
   return true;
 }
 
-bool Deque::insertBefore(Node *current, Flight flight){
+bool Deque::insertBefore(Entry *current, Flight flight){
   if (this->isEmpty())
     return this->insertFirstElement(flight);
 
   if (current == this->head)
     return this->pushFront(flight);
 
-  Node *node = new Node();
-  node->flight = flight;
+  Entry *entry = new Entry();
+  entry->flight = flight;
 
-  node->previous = current->previous;
-  node->next = current;
+  entry->previous = current->previous;
+  entry->next = current;
 
-  current->previous->next = node;
-  current->previous = node;
+  current->previous->next = entry;
+  current->previous = entry;
 
   return true;
 }
 
-bool Deque::insertAfter(Node *current, Flight flight){
+bool Deque::insertAfter(Entry *current, Flight flight){
   if (this->isEmpty())
     return this->insertFirstElement(flight);
 
   if (current == this->tail)
     return this->pushBack(flight);
 
-  Node *node = new Node();
-  node->flight = flight;
+  Entry *entry = new Entry();
+  entry->flight = flight;
 
-  node->previous = current;
-  node->next = current->next;
+  entry->previous = current;
+  entry->next = current->next;
 
-  current->next->previous = node;
-  current->next = node;
+  current->next->previous = entry;
+  current->next = entry;
 
   return true;
 }
 
 Flight Deque::popFront(){
-  Node *node = this->head;
-  Flight flight = node->flight;
+  Entry *entry = this->head;
+  Flight flight = entry->flight;
 
-  if (node->next != NULL)
-    node->next->previous = NULL;
+  if (entry->next != NULL)
+    entry->next->previous = NULL;
 
-  this->head = node->next;
+  this->head = entry->next;
 
-  delete(node);
+  delete(entry);
 
   return flight;
 }
 
 Flight Deque::popBack(){
-  Node *node = this->tail;
-  Flight flight = node->flight;
+  Entry *entry = this->tail;
+  Flight flight = entry->flight;
 
-  if (node->previous != NULL)
-    node->previous->next = NULL;
+  if (entry->previous != NULL)
+    entry->previous->next = NULL;
 
-  this->tail = node->previous;
+  this->tail = entry->previous;
 
-  delete(node);
+  delete(entry);
 
   return flight;
 }
 
-Flight Deque::remove(Node *&node){
-  if (node == this->head)
+Flight Deque::remove(Entry *&entry){
+  if (entry == this->head)
     return this->popFront();
 
-  if (node == this->tail)
+  if (entry == this->tail)
     return this->popBack();
 
-  Flight flight = node->flight;
+  Flight flight = entry->flight;
 
-  node->previous->next = node->next;
-  node->next->previous = node->previous;
+  entry->previous->next = entry->next;
+  entry->next->previous = entry->previous;
 
-  delete(node);
+  delete(entry);
 
   return flight;
 }
 
 void Deque::show(){
-  Node *node = this->head;
+  Entry *entry = this->head;
 
-  while (node != NULL){
-    cout << "\n" << node->flight.id;
-    node = node->next;
+  while (entry != NULL){
+    cout << "\n" << entry->flight.id;
+    entry = entry->next;
   }
 }
 
 void Deque::showReverse(){
-  Node *node = this->tail;
+  Entry *entry = this->tail;
 
-  while (node != NULL){
-    cout << "\n" << node->flight.id;
-    node = node->previous;
+  while (entry != NULL){
+    cout << "\n" << entry->flight.id;
+    entry = entry->previous;
   }
 }
 
 bool Deque::insertFirstElement(Flight flight){
-  Node *node = new Node();
-  node->flight = flight;
-  node->previous = node->next = NULL;
+  Entry *entry = new Entry();
+  entry->flight = flight;
+  entry->previous = entry->next = NULL;
 
-  this->head = this->tail = node;
+  this->head = this->tail = entry;
 
   return true;
 }
 
 void Deque::clear(){
-  Node *walker, *current;
+  Entry *walker, *current;
   walker = this->head;
 
   while (walker != NULL){
