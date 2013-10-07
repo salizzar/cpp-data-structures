@@ -4,8 +4,8 @@
 #pragma once
 
 //TODO: use templates
-struct Node {
-  Node   *previous, *next;
-  Flight flight;
+struct Entry {
+  Entry   *previous, *next;
+  Flight  flight;
 };
 
