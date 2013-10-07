@@ -13,18 +13,18 @@ bool FlightDequeManager::addFlight(Flight newFlight){
   if (newFlight.national_authority)
     return this->deque.pushFront(newFlight);
 
-  Node *node = this->deque.getHead();
+  Entry *entry = this->deque.getHead();
   Flight flight;
   bool lowerFuel;
 
-  while (node != NULL){
+  while (entry != NULL){
     lowerFuel = flight.fuel_quantity > newFlight.fuel_quantity;
-    flight = node->flight;
+    flight = entry->flight;
 
     if (lowerFuel)
-      return this->deque.insertBefore(node, newFlight);
+      return this->deque.insertBefore(entry, newFlight);
 
-    node = node->next;
+    entry = entry->next;
   }
 
   this->deque.pushBack(newFlight);
@@ -33,16 +33,16 @@ bool FlightDequeManager::addFlight(Flight newFlight){
 }
 
 bool FlightDequeManager::deleteFlight(int flightId){
-  Node *node = this->deque.getHead();
-  Node *target = NULL;
+  Entry *entry = this->deque.getHead();
+  Entry *target = NULL;
 
-  while (target == NULL && node != NULL){
-    if (node->flight.id == flightId){
-      target = node;
+  while (target == NULL && entry != NULL){
+    if (entry->flight.id == flightId){
+      target = entry;
       break;
     }
 
-    node = node->next;
+    entry = entry->next;
   }
 
   if (target == NULL)
@@ -69,22 +69,14 @@ void FlightDequeManager::showFlights(){
     return;
   }
 
-  Node *node = this->deque.getHead();
-  Flight flight;
+  Entry *entry = this->deque.getHead();
 
-  cout << "\n";
-  cout << "| flight id | fuel quantity | national authority |";
-  cout << "\n";
+  FlightFacade::showHeaders();
 
-  while (node != NULL){
-    flight = node->flight;
+  while (entry != NULL){
+    FlightFacade::show(entry->flight);
 
-    cout << "|" << std::setw(10) << flight.id << " ";
-    cout << "|" << std::setw(14) << flight.fuel_quantity << " ";
-    cout << "|" << std::setw(19) << flight.national_authority << " ";
-    cout << "|\n";
-
-    node = node->next;
+    entry = entry->next;
   }
 }
 
