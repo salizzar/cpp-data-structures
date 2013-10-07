@@ -1,6 +1,9 @@
 #include <iostream>
+#include "flight_facade.h"
 #include "flight_hash_manager.h"
 #include "util.h"
+
+#pragma once
 
 class FlightHash {
 private:
@@ -15,8 +18,6 @@ private:
   void showMenu();
 
 public:
-  FlightHash();
-
   void run();
 };
 

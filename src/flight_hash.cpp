@@ -2,25 +2,10 @@
 
 using namespace std;
 
-FlightHash::FlightHash(){
-}
-
 void FlightHash::addFlight(){
-  int     flightId;
-  char    flightAuthority[1];
-  double  flightFuel;
-  Flight  flight;
+  Flight flight = FlightFacade::create();
 
-  cout << "Flight id:                               "; cin >> flightId;
-  flight.id = flightId;
-
-  cout << "Flight fuel quantity:                    "; cin >> flightFuel;
-  flight.fuel_quantity = flightFuel;
-
-  cout << "Flight is from national authority? (y/n) "; cin >> flightAuthority;
-  flight.national_authority = tolower(flightAuthority[0]) == 'y';
-
-  manager.addFlight(flight);
+  this->manager.addFlight(flight);
 
   cout << "\nSuccessfully added flight.\n";
 }
@@ -29,14 +14,14 @@ void FlightHash::showFlight(){
   int flightId;
   cout << "\nEnter flight id: "; cin >> flightId;
 
-  manager.showFlight(flightId);
+  this->manager.showFlight(flightId);
 }
 
 void FlightHash::deleteFlight(){
   int flightId;
   cout << "\nEnter flight id: "; cin >> flightId;
 
-  if (manager.deleteFlight(flightId))
+  if (this->manager.deleteFlight(flightId))
     cout << "Successfully deleted flight.";
   else
     cout << "Flight not found.\n";
@@ -45,17 +30,17 @@ void FlightHash::deleteFlight(){
 void FlightHash::heavyCharge(){
   int items = 1000;
   int range = 100000000;
-  manager.heavyCharge(items, range);
+  this->manager.heavyCharge(items, range);
 }
 
 void FlightHash::showAllFlights(){
-  manager.showAllFlights();
+  this->manager.showAllFlights();
 
   cout << "\nDone.\n";
 }
 
 void FlightHash::deleteAllFlights(){
-  manager.deleteAllFlights();
+  this->manager.deleteAllFlights();
 
   cout << "\nSuccessfully deleted all flights.\n";
 }
