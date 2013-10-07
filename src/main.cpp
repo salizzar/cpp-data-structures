@@ -1,6 +1,7 @@
 #include <iostream>
 #include "flight_deque.h"
 #include "flight_hash.h"
+#include "flight_tree.h"
 #include "util.h"
 
 using namespace std;
@@ -9,6 +10,7 @@ void showMenu(){
   cout << "\n-----------------------------";
   cout << "\n1 - Deque";
   cout << "\n2 - Hash";
+  cout << "\n3 - Binary Tree";
   cout << "\n9 - Exit Program";
   cout << "\n-----------------------------";
   cout << "\n";
@@ -19,6 +21,7 @@ int main(){
   int         option;
   FlightDeque deque;
   FlightHash  hash;
+  FlightTree  tree;
 
   do {
     showMenu();
@@ -32,6 +35,10 @@ int main(){
 
       case 2:
         hash.run();
+        break;
+
+      case 3:
+        tree.run();
         break;
 
       case 9:
