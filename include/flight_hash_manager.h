@@ -14,6 +14,8 @@ public:
   bool addFlight(Flight);
   void showFlight(int);
   bool deleteFlight(int);
-  void heavyCharge(int);
+  void heavyCharge(int, int);
+  void showAllFlights();
+  void deleteAllFlights();
 };
 

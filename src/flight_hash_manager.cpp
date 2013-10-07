@@ -36,13 +36,13 @@ bool FlightHashManager::deleteFlight(int flightId){
   return true;
 }
 
-void FlightHashManager::heavyCharge(int items){
+void FlightHashManager::heavyCharge(int items, int range){
   int id;
 
   srand(time(NULL));
 
   for (int i = 0; i < items; i++){
-    id = rand() % items + 1;
+    id = rand() % range + 1;
 
     Flight flight;
     flight.id = id;
@@ -53,5 +53,13 @@ void FlightHashManager::heavyCharge(int items){
 
     this->hash.add(flight);
   }
+}
+
+void FlightHashManager::showAllFlights(){
+  this->hash.show();
+}
+
+void FlightHashManager::deleteAllFlights(){
+  this->hash.clear();
 }
 
