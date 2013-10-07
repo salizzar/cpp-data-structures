@@ -7,14 +7,7 @@ Deque::Deque(){
 }
 
 Deque::~Deque(){
-  Node *current = this->head;
-
-  while (current != NULL){
-    Node *node = current;
-    current = current->next;
-
-    delete(node);
-  }
+  this->clear();
 }
 
 Node *Deque::getHead(){ return this->head; }
@@ -152,7 +145,7 @@ void Deque::show(){
   Node *node = this->head;
 
   while (node != NULL){
-    cout << node->flight.id << "\n";
+    cout << "\n" << node->flight.id;
     node = node->next;
   }
 }
@@ -161,7 +154,7 @@ void Deque::showReverse(){
   Node *node = this->tail;
 
   while (node != NULL){
-    cout << node->flight.id << "\n";
+    cout << "\n" << node->flight.id;
     node = node->previous;
   }
 }
@@ -174,5 +167,19 @@ bool Deque::insertFirstElement(Flight flight){
   this->head = this->tail = node;
 
   return true;
+}
+
+void Deque::clear(){
+  Node *walker, *current;
+  walker = this->head;
+
+  while (walker != NULL){
+    current = walker;
+    walker = walker->next;
+
+    delete(current);
+  }
+
+  this->head = this->tail = NULL;
 }
 

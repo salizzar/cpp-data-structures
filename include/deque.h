@@ -34,5 +34,6 @@ public:
 
   void show();
   void showReverse();
+  void clear();
 };
 
