@@ -23,10 +23,10 @@ public:
   Hash();
   ~Hash();
 
-  Node    *get(int);
+  Entry   *get(int);
   bool    add(Flight);
   bool    exists(int);
-  Flight  remove(Node*);
+  Flight  remove(Entry*);
   int     getSize();
   void    show();
   void    clear();

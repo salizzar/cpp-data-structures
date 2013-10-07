@@ -15,14 +15,14 @@ Hash::~Hash(){
     delete(this->table[i]);
 }
 
-Node *Hash::get(int flightId){
+Entry *Hash::get(int flightId){
   int hash = this->createHash(flightId);
 
   Deque *list = this->table[hash];
   if (list == NULL)
     return NULL;
 
-  Node *current = list->getHead();
+  Entry *current = list->getHead();
 
   while (current != NULL){
     if (current->flight.id == flightId)
@@ -97,7 +97,7 @@ void Hash::moveEntries(int oldSize){
     }
   }
 
-  Node *walker = deque.getHead();
+  Entry *walker = deque.getHead();
   int hash;
 
   while (walker != NULL){
@@ -114,9 +114,9 @@ bool Hash::exists(int flightId){
   return this->get(flightId) != NULL;
 }
 
-Flight Hash::remove(Node *node){
-  int hash = this->createHash(node->flight.id);
-  Flight flight = this->table[hash]->remove(node);
+Flight Hash::remove(Entry *entry){
+  int hash = this->createHash(entry->flight.id);
+  Flight flight = this->table[hash]->remove(entry);
 
   return flight;
 }
